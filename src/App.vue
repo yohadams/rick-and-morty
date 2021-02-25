@@ -1,27 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div id='header'></div>
+  <div id='tabs'></div>
+  <AllCharacters id='table' />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import AllCharacters from './pages/AllCharacters.vue';
 
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { AllCharacters }
 });
 </script>
 
 <style>
+@import './assets/css/global.css';
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: 'header'
+                       'tabs'
+                       'table';
+  grid-template-rows: 135px 78px auto;
+  grid-template-columns: 1fr;
+}
+
+#header {
+  grid-area: header;
+  background-color: red;
+}
+
+#tabs {
+  grid-area: tabs;
+  background-color: blue;
+}
+
+#table {
+  grid-area: table;
 }
 </style>
