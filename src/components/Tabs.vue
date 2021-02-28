@@ -1,6 +1,6 @@
 <template>
   <div class="grid">
-    <button class="bold" @click="tabToggle('all')" :class="{ selected: selected === 'all' }">All Characters</button>
+    <button class="bold grid-padding" @click="tabToggle('all')" :class="{ selected: selected === 'all' }">All Characters</button>
     <button class="bold" @click="tabToggle('fav')" :class="{ selected: selected === 'fav' }">Favorites</button>
   </div>
 </template>
@@ -24,11 +24,23 @@ export default defineComponent({
 <style scoped>
   .grid {
     display: grid;
+    width: 100%;
     column-gap: 80px;
-    grid-template-columns: 115px 74px;
-    margin-left: 140px;
+    grid-template-columns: 140px 115px 74px 1fr;
     justify-items: self-start;
     align-items: center;
+  }
+
+  .grid-padding {
+    grid-column-start: 2;
+  }
+
+  @media (max-width:835px) { 
+    .grid {
+      justify-items: center;
+      grid-template-columns: 0px 115px 74px;
+      column-gap: 16px;
+    }
   }
 
   .grid > button {

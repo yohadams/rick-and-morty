@@ -132,8 +132,9 @@ export default defineComponent({
 
   @media (max-width:835px) { 
     .table-grid {
-      grid-template-columns: 8px repeat(7, 1fr) 8px;
+      grid-template-columns: 3px repeat(7, 1fr) 3px;
       column-gap: 8px;
+      justify-items: center;
     }
   }
   

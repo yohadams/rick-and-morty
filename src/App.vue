@@ -140,6 +140,8 @@ export default defineComponent({
 
 #tabs {
   grid-area: tabs;
+  display: grid;
+  justify-items: center;
 }
 
 #table {
