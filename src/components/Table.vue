@@ -9,7 +9,7 @@
     <div>Add To Favorites</div>
   </div>
   
-  <div v-if="!fetchError">
+  <div v-if="!fetchError && !noFavourites">
     <div v-for="character in characters" :key="character.id" class="table-grid" >
       <transition name="fade">
         <div v-if="loaded" :style="{ 'background-image': `url(${character.image})` }" class='img grid-padding'></div>
@@ -50,6 +50,13 @@
         Error witch fetching data, please try again.
       </div>
   </div>
+
+  <div v-if="noFavourites" class="fetch-error-message">
+      <div>
+        <div class="material-icons" style="justyf">error</div> 
+        There is no favourites added, please add some on 'All Characters' tab.
+      </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -74,6 +81,7 @@ export default defineComponent({
     favouritedCharacters: Array,
     loaded: Boolean,
     fetchError: Boolean,
+    noFavourites: { type: Boolean, default: false }
   },
   setup(props, { emit }) {
     let favouritedCharactersLocal = ref(props.favouritedCharacters || []);
@@ -92,7 +100,12 @@ export default defineComponent({
         emit('favoritesChanged');
       } else {
         favouritedCharactersLocal.value.splice(selectedCharacterIndex, 1);
-        localStorage.setItem('favouritedCharacters', JSON.stringify(favouritedCharactersLocal.value));
+        if (favouritedCharactersLocal.value.length) {
+          localStorage.setItem('favouritedCharacters', JSON.stringify(favouritedCharactersLocal.value));
+        } else {
+          localStorage.removeItem('favouritedCharacters')
+        }
+        
         emit('favoritesChanged');
       }
     }

@@ -3,7 +3,7 @@
     <div class="label">Search by</div>
     <select name="seatchType" v-model="type">
       <option>Name</option>
-      <option>Identyfier</option>
+      <option>Identifier</option>
       <option disabled>Episode</option>
     </select>
     <input type="text" v-model="phrase" />

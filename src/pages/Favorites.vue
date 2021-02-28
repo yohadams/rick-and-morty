@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Table :characters="characters" :loaded="loaded" @favoritesChanged="loadCharacters" :favouritedCharacters="favouritedCharacters" :fetchError="fetchError"/>
+      <Table :characters="characters" :loaded="loaded" @favoritesChanged="loadCharacters" :favouritedCharacters="favouritedCharacters" :fetchError="fetchError" :noFavourites="noFavourites" />
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default defineComponent({
     let loaded = ref(false);
     let favouritedCharactersLocal = ref(Array());
     let fetchError = ref(false);
+    let noFavourites = ref(false);
 
     const showFav = async () => {
       favouritedCharactersLocal.value = props.favouritedCharacters || [];
@@ -28,22 +29,29 @@ export default defineComponent({
     onUpdated(showFav);
     const loadCharacters = async () => {
       fetchError.value = await false;
-      try {
-        const data = await getCharactersById(favouritedCharactersLocal.value || []);
-        const json = await data.json();
-        characters.value = json.data.charactersByIds;
-      } catch (error) {
-        console.error(error);
-        characters.value = [];
-        fetchError.value = await true;
+      noFavourites.value = await false;
+
+      if (favouritedCharactersLocal.value.length) {
+        try {
+          const data = await getCharactersById(favouritedCharactersLocal.value || []);
+          const json = await data.json();
+          characters.value = json.data.charactersByIds;
+        } catch (error) {
+          console.error(error);
+          characters.value = [];
+          fetchError.value = await true;
+        }
+      } else {
+        noFavourites.value = await true;
       }
+      
       loaded.value = await true
     }
 
     onMounted(loadCharacters);
     watch(favouritedCharactersLocal, loadCharacters)
     
-    return { characters, loaded, loadCharacters, fetchError }
+    return { characters, loaded, loadCharacters, fetchError, noFavourites }
   }
 });
 </script>

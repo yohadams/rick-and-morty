@@ -40,7 +40,7 @@ export default defineComponent({
           const json = await data.json();
           characters.value = json.data.characters.results;
           info.value = json.data.characters.info;
-        } else if (searchType.value === 'Identyfier') {
+        } else if (searchType.value === 'Identifier') {
           const data = await getCharactersById([parseInt(searchPhrase?.value, 10)] || []);
           const json = await data.json();
           info.value = { pages: 1 }; // workaround because grapql api charactersById dont give infos data
