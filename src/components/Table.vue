@@ -137,21 +137,6 @@ export default defineComponent({
     grid-column-start: 2;
   }
 
-  @media (max-width:1200px) { 
-    .table-grid {
-      grid-template-columns: 32px repeat(7, 1fr) 32px;
-    }
- }
-
-  @media (max-width:835px) { 
-    .table-grid {
-      grid-template-columns: 3px repeat(7, 1fr) 3px;
-      column-gap: 8px;
-      justify-items: center;
-    }
-  }
-  
-    
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.5s ease;
@@ -211,4 +196,22 @@ export default defineComponent({
     background-color: var(--secondary-color);
   }
   
+  @media (max-width:1200px) { 
+    .table-grid {
+      grid-template-columns: 32px repeat(7, 1fr) 32px;
+    }
+  }
+
+  @media (max-width:835px) { 
+    .table-grid {
+      grid-template-columns: 3px repeat(7, 1fr) 3px;
+      column-gap: 8px;
+      justify-items: center;
+    }
+    
+    .fetch-error-message {
+      grid-template-columns: 16px 1fr 16px;  
+    }
+  }
+
 </style>
