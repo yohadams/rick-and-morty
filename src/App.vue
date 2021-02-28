@@ -1,16 +1,52 @@
 <template>
-  <div id='header'></div>
-  <div id='tabs'></div>
-  <AllCharacters id='table' />
+  <div id='header'>
+    <div class="logo"></div>
+  </div>
+  <Tabs id='tabs' :selected="selectedTab" @tabToggle="changeTab" />
+  <AllCharacters v-if="selectedTab === 'all'" id='table' :favouritedCharacters="favouritedCharacters" />
+  <Favorites v-if="selectedTab === 'fav'" id='table' :favouritedCharacters="favouritedCharacters" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 import AllCharacters from './pages/AllCharacters.vue';
+import Favorites from './pages/Favorites.vue';
+import Tabs from './components/Tabs.vue';
+
+type Tabs = {
+  type: string
+}
 
 export default defineComponent({
   name: 'App',
-  components: { AllCharacters }
+  components: { AllCharacters, Favorites, Tabs },
+  setup() {
+    let selectedTab = ref('all');
+    let favouritedCharacters = ref(Array());
+
+    const loadFavourites = async () => {
+      let favouritedCharacterArray = localStorage.getItem('favouritedCharacters');
+      if (favouritedCharacterArray) {
+        try {
+          favouritedCharacters.value = JSON.parse(favouritedCharacterArray);
+        } catch (error) {
+          console.error(error)
+        }
+      } else {
+        localStorage.setItem('favouritedCharacters', JSON.stringify([]))
+      }
+    };
+
+    const changeTab = (event: Tabs) => {
+      selectedTab.value = event.type;
+      loadFavourites();
+    }
+
+    onMounted(loadFavourites);
+
+
+    return { selectedTab, changeTab, favouritedCharacters }
+  }
 });
 </script>
 
@@ -34,7 +70,6 @@ export default defineComponent({
 
 #tabs {
   grid-area: tabs;
-  background-color: blue;
 }
 
 #table {
