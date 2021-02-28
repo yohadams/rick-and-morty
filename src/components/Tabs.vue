@@ -34,7 +34,7 @@ export default defineComponent({
   .grid > button {
     font-weight: 500;
     border: none;
-    background: white;
+    background-color: var(--background-color);
     font-size: 16px;
     cursor: pointer;
   }

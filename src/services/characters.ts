@@ -4,11 +4,11 @@ const OPTIONS = {
   headers: { "Content-Type": "application/json" },
 }
 
-export async function getCharacters<T>(page: number): Promise<Response> {
+export async function getCharacters<T>(page: number, phrase: string): Promise<Response> {
   const body = {
     query: `
       query {
-        characters(page: ${page}) {
+        characters(page: ${page}, filter: { name: "${phrase}" }) {
           info {
             count
             pages

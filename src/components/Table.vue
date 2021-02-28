@@ -123,6 +123,20 @@ export default defineComponent({
   .grid-padding {
     grid-column-start: 2;
   }
+
+  @media (max-width:1200px) { 
+    .table-grid {
+      grid-template-columns: 32px repeat(7, 1fr) 32px;
+    }
+ }
+
+  @media (max-width:835px) { 
+    .table-grid {
+      grid-template-columns: 8px repeat(7, 1fr) 8px;
+      column-gap: 8px;
+    }
+  }
+  
     
   .fade-enter-active,
   .fade-leave-active {
@@ -174,12 +188,12 @@ export default defineComponent({
     border: 2px solid var(--secondary-color);
     border-radius: 8px;
     color: var(--secondary-color);
-    background-color: white;
+    background-color: var(--background-color);;
     cursor: pointer;
   }
 
   .selected {
-    color: white;
+    color: var(--background-color);;
     background-color: var(--secondary-color);
   }
   
