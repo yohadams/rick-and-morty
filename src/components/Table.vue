@@ -208,10 +208,22 @@ export default defineComponent({
       column-gap: 8px;
       justify-items: center;
     }
+
+    .table-grid > div {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+    }
     
+    .table-grid > div.img {
+      width: 43px;
+    }
+
     .fetch-error-message {
       grid-template-columns: 16px 1fr 16px;  
     }
+
   }
 
 </style>
