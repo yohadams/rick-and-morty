@@ -50,7 +50,7 @@ export default defineComponent({
       } catch (error) {
         console.error(error);
         characters.value = [];
-        info.value = {};
+        info.value = { pages: 1};
         fetchError.value = await true;
       }
         loaded.value = await true

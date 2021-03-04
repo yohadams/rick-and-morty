@@ -14,7 +14,7 @@
       v-if="currentPage + 1 !== lastPage && currentPage + 1 < lastPage"
       @click="setPage(currentPage + 1)">{{ currentPage + 1 }}</button>
     <button disabled v-if="currentPage < lastPage - 3">...</button>
-    <button @click="setPage(lastPage)" :id="lastPage" :class='{ selected: currentPage === lastPage}'>{{ lastPage }} </button>
+    <button @click="setPage(lastPage)" :id="lastPage" :class='{ selected: currentPage === lastPage}' v-if="lastPage !== 1">{{ lastPage }} </button>
     <button @click='pageUp' :disabled="currentPage === lastPage" class="material-icons arrows">arrow_right</button>
   </div>
     

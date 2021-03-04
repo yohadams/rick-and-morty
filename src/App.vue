@@ -103,9 +103,9 @@ export default defineComponent({
     grid-template-rows: 1fr 1fr;
     justify-items: center;
     align-items: center;
-    column-gap: 0;
+    column-gap: 8px;
     row-gap: 8px;
-    padding-top: 8px;
+    padding-top: 0px;
   }
 
   .logo {
@@ -123,9 +123,9 @@ export default defineComponent({
     grid-template-rows: 1fr 1fr;
     justify-items: center;
     align-items: center;
-    column-gap: 0;
+    column-gap: 8px;
     row-gap: 8px;
-    padding-top: 8px;
+    padding-top: 0px;
   }
 
   .logo {
