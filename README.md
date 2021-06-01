@@ -24,4 +24,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-netlify url ttps://vigilant-hermann-d915b5.netlify.app
+
